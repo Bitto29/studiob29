@@ -409,7 +409,70 @@
             box-shadow: 0 8px 25px rgba(123, 44, 191, 0.7);
         }
         
-
+        .lyrics-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: rgba(26, 9, 51, 0.5);
+            border-radius: 0 0 10px 10px;
+            margin-top: -10px;
+        }
+        
+        .lyrics-content {
+            padding: 15px;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+        
+        .lyrics-btn {
+            background: transparent;
+            border: none;
+            color: var(--secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .lyrics-btn:hover {
+            color: white;
+        }
+        
+        .lyrics-btn i {
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lyrics-btn.active i {
+            transform: rotate(180deg);
+        }
+        
+        .youtube-btn {
+            background: linear-gradient(45deg, #FF0000, #FF3333);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .youtube-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+        }
+        
+        .youtube-btn i {
+            margin-right: 8px;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .header-content {
@@ -439,18 +502,15 @@
                 height: 50px;
                 font-size: 20px;
             }
-
             #fb {
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
             }
-        
             
             #yt:hover {
                 right: 70px;
             }
-
             #fb:hover {
                 right: 70px;
             }
@@ -470,11 +530,6 @@
                 padding: 10px 16px;
                 font-size: 14px;
             }
-            
-            /*.fab-container {
-                bottom: 20px;
-                right: 20px;
-            }*/
         }
         
         /* Scrollbar styling */
@@ -566,7 +621,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Song 1 -->
-                <div class="player-container neon-border p-6">
+                <div class="player-container neon-border p-6 relative">
                     <div class="flex items-center mb-4">
                         <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
                             <img src="logo.jpeg" alt="Song cover" class="w-full h-full object-cover">
@@ -593,10 +648,6 @@
                                     <span class="tooltiptext">Download</span>
                                 </button>
                             </a>
-                            <!--<button class="share-btn tooltip" id="share-btn1">
-                                <i class="fas fa-share-alt"></i>
-                                <span class="tooltiptext">Share</span>
-                            </button>-->
                         </div>
                         <span id="duration1">0:00</span>
                     </div>
@@ -619,13 +670,63 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Lyrics section 
+                    <button class="lyrics-btn" id="lyrics-btn1">
+                        <i class="fas fa-chevron-down"></i> Show Lyrics
+                    </button>
+                    <div class="lyrics-container" id="lyrics-container1">
+                        <div class="lyrics-content" id="lyrics-content1">
+                           
+                            [Verse]
+                            চোখে লুকিয়ে কথা ছিল
+                            হৃদয়টা নীরবে কাঁদছিল
+                            তুমি দেখো নি আমায় একবার
+                            মনে হয়েছে সবই অজানা আহার
+                            
+                            [Verse 2]
+                            ছায়ার মতন তোমার পাশে হাঁটি
+                            তোমার ছোঁয়াতে স্বর্গের গল্প বাঁচি
+                            মনের আকাশে এঁকে দিয়েছি রঙ
+                            তবুও তুমি দূর লক্ষ্যের সংগ
+                            
+                            [Chorus]
+                            তোমার নাম রাখা আছে আমার নিশ্বাসে
+                            অব্যক্ত ভালোবাসার শব্দ এই নিশীথে
+                            স্বপ্ন মোটাতে তবু আছো তুমি দূরে
+                            আমার মনের রাত জাগার প্রহরে
+                            
+                            [Verse 3]
+                            তোমার হাসিতে সূর্য ওঠে মনের কোণে
+                            অন্ধকার নিভে যায় তোমার আলোর সনে
+                            তুমি দু'চোখে ঘুম এনে দাও
+                            তোমাকে ছাড়া জীবন অন্ধকারে চাও
+                            
+                            [Bridge]
+                            দূর থেকে তোমার ছবি দেখি নীরবে
+                            শব্দের চাদরে ঢেকে রাখি গোপনে
+                            তোমার জন্য এই গান শুধু তোমায় বলার
+                            অন্তহীন অভিমান এই মনের জ্বলার
+                            
+                            [Chorus]
+                            তোমার নাম রাখা আছে আমার নিশ্বাসে
+                            অব্যক্ত ভালোবাসার শব্দ এই নিশীথে
+                            স্বপ্ন মোটাতে তবু আছো তুমি দূরে
+                            আমার মনের রাত জাগার প্রহরে
+                        </div>
+                    </div>-->
+                    
+                    <!-- YouTube button -->
+                    <a href="https://youtu.be/Ytytd5jrJDA?si=s19SABN6qT2-X-Jw" target="_blank" class="youtube-btn">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
                 </div>
                 
                 <!-- Song 2 
-                <div class="player-container neon-border p-6">
+                <div class="player-container neon-border p-6 relative">
                     <div class="flex items-center mb-4">
                         <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                            <img src="https://source.unsplash.com/random/300x300/?music,concert" alt="Song cover" class="w-full h-full object-cover">
+                            <img src="logo.jpeg" alt="Song cover" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h3 class="font-bold text-lg">Electric Dreams</h3>
@@ -646,10 +747,6 @@
                             <button class="download-btn tooltip" id="download-btn2">
                                 <i class="fas fa-download"></i>
                                 <span class="tooltiptext">Download</span>
-                            </button>
-                            <button class="share-btn tooltip" id="share-btn2">
-                                <i class="fas fa-share-alt"></i>
-                                <span class="tooltiptext">Share</span>
                             </button>
                         </div>
                         <span id="duration2">0:00</span>
@@ -673,14 +770,42 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <button class="lyrics-btn" id="lyrics-btn2">
+                        <i class="fas fa-chevron-down"></i> Show Lyrics
+                    </button>
+                    <div class="lyrics-container" id="lyrics-container2">
+                        <div class="lyrics-content" id="lyrics-content2">
+                            [Verse 1]
+                            Neon lights in the city night
+                            Digital love feels so right
+                            Circuits humming, hearts are drumming
+                            In this electric dream
+            
+                            [Chorus]
+                            Electric dreams, we're wired to feel
+                            Binary code but love is real
+                            In the glow of the screen light
+                            You're my perfect digital night
+            
+                            [Verse 2]
+                            Touchscreen kisses, pixel blisses
+                            Memory stored in our devices
+                            Never fading, always waiting
+                            In this electric dream
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2" target="_blank" class="youtube-btn">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
                 </div>-->
                 
-
                 <!-- Song 3
-                <div class="player-container neon-border p-6">
+                <div class="player-container neon-border p-6 relative">
                     <div class="flex items-center mb-4">
                         <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                            <img src="https://source.unsplash.com/random/300x300/?music,studio" alt="Song cover" class="w-full h-full object-cover">
+                            <img src="logo.jpeg" alt="Song cover" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h3 class="font-bold text-lg">Lost in the Echo</h3>
@@ -701,10 +826,6 @@
                             <button class="download-btn tooltip" id="download-btn3">
                                 <i class="fas fa-download"></i>
                                 <span class="tooltiptext">Download</span>
-                            </button>
-                            <button class="share-btn tooltip" id="share-btn3">
-                                <i class="fas fa-share-alt"></i>
-                                <span class="tooltiptext">Share</span>
                             </button>
                         </div>
                         <span id="duration3">0:00</span>
@@ -728,15 +849,48 @@
                             </div>
                         </div>
                     </div>
-                </div>-->
-
-
-                <div class="player-container neon-border p-6">
+                    
+                    <button class="lyrics-btn" id="lyrics-btn3">
+                        <i class="fas fa-chevron-down"></i> Show Lyrics
+                    </button>
+                    <div class="lyrics-container" id="lyrics-container3">
+                        <div class="lyrics-content" id="lyrics-content3">
+                            [Verse 1]
+                            Whispered words in empty halls
+                            Footsteps fade against the walls
+                            All the promises we made
+                            Now just shadows in the shade
+            
+                            [Chorus]
+                            I'm lost in the echo
+                            Of the love we used to know
+                            Every word comes back to me
+                            In this lonely symphony
+            
+                            [Verse 2]
+                            Pictures framed in broken glass
+                            Memories that never last
+                            All the songs we used to sing
+                            Now just echoes lingering
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_3" target="_blank" class="youtube-btn">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                </div>
+            </div>-->
+                 <div class="player-container neon-border p-6">
                             <h3 class="font-bold text-lg">Coming Soon</h3>
                             <p class="text-gray-400 text-sm">New songs are just about to come. Stay tuned</p>
                         </div>
                 </div>
-
+            
+            <!-- See More Videos button -->
+            <div class="text-center mt-12">
+                <a href="https://youtube.com/@studiob29" target="_blank" class="youtube-btn inline-block px-8 py-3 text-lg">
+                    <i class="fab fa-youtube"></i> See More Videos on YouTube
+                </a>
             </div>
         </section>
         
@@ -782,23 +936,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div class="mt-8">
-                        <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://youtube.com/@studiob29" target="_blank" class="social-icon w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-300 hover:bg-purple-900/70">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="https://www.facebook.com/studiob29" target="_blank" class="social-icon w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-300 hover:bg-purple-900/70">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-300 hover:bg-purple-900/70">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-300 hover:bg-purple-900/70">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </div>
-                    </div>-->
                 </div>
                 
                 <div class="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-2xl p-8 backdrop-blur-sm border border-blue-500/20">
@@ -844,27 +981,6 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Newsletter Section 
-        <section class="mt-20">
-            <div class="bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-2xl p-8 md:p-12 backdrop-blur-sm border border-purple-500/20">
-                <h2 class="title-font text-3xl md:text-4xl font-bold mb-6 text-center glow-text">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">STAY</span>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">UPDATED</span>
-                </h2>
-                <p class="text-lg text-gray-300 mb-8 text-center max-w-3xl mx-auto">
-                    Subscribe to our newsletter to get the latest updates on new releases, behind-the-scenes content, and exclusive offers.
-                </p>
-                <div class="max-w-md mx-auto">
-                    <form class="flex flex-col sm:flex-row gap-4">
-                        <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-full bg-purple-900/30 border border-purple-500/30 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
-                        <button type="submit" class="submit-btn">
-                            Subscribe <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>-->
     </main>
     
     <!-- Footer -->
@@ -888,19 +1004,13 @@
                     <a href="https://www.facebook.com/studiob29" target="_blank" class="text-gray-400 hover:text-purple-300 transition-colors">
                         <i class="fab fa-facebook-f text-xl"></i>
                     </a>
-                    <!--<a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>-->
                     <a href="mailto:info.bitto29@gmail.com" class="text-gray-400 hover:text-purple-300 transition-colors">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
                 </div>
             </div>
             <div class="mt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Studio B29. All rights reserved. | Founder, <a href="https://bitto29.github.io" class="hover:text-purple-300">Basit Iqbal Bitto.</a> <!--| <a href="#" class="hover:text-purple-300">Terms of Service</a>--></p>
+                <p>&copy; 2025 Studio B29. All rights reserved. | Founder, <a href="https://bitto29.github.io" class="hover:text-purple-300">Basit Iqbal Bitto.</a></p>
             </div>
         </div>
     </footer>
@@ -921,6 +1031,28 @@
                 note.style.animationDelay = Math.random() * 5 + 's';
                 container.appendChild(note);
             }
+        }
+        
+        // Toggle lyrics visibility
+        function setupLyricsToggles() {
+            const lyricsButtons = document.querySelectorAll('.lyrics-btn');
+            
+            lyricsButtons.forEach(button => {
+                const containerId = button.id.replace('btn', 'container');
+                const container = document.getElementById(containerId);
+                
+                button.addEventListener('click', () => {
+                    button.classList.toggle('active');
+                    
+                    if (container.style.maxHeight) {
+                        container.style.maxHeight = null;
+                        button.innerHTML = '<i class="fas fa-chevron-down"></i> Show Lyrics';
+                    } else {
+                        container.style.maxHeight = container.scrollHeight + 'px';
+                        button.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Lyrics';
+                    }
+                });
+            });
         }
         
         // Initialize music players
@@ -1122,10 +1254,12 @@
                 });
                 
                 // Share button
-                player.shareBtn.addEventListener('click', () => {
-                    // In a real implementation, this would open a share dialog
-                    alert(`Sharing song ${player.id}`);
-                });
+                if (player.shareBtn) {
+                    player.shareBtn.addEventListener('click', () => {
+                        // In a real implementation, this would open a share dialog
+                        alert(`Sharing song ${player.id}`);
+                    });
+                }
             });
         }
         
@@ -1133,6 +1267,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             createMusicNotes();
             initMusicPlayers();
+            setupLyricsToggles();
             
             // Add animation to header on scroll
             window.addEventListener('scroll', () => {
@@ -1148,19 +1283,13 @@
                 }
             });
             
-            // Newsletter form submission
-            const newsletterForm = document.querySelector('form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const emailInput = newsletterForm.querySelector('input[type="email"]');
-                    if (emailInput.value) {
-                        alert(`Thank you for subscribing with ${emailInput.value}!`);
-                        emailInput.value = '';
-                    }
-                });
+            // Set up download links
+            const downloadLink = document.getElementById('download-link');
+            if (downloadLink) {
+                downloadLink.href = '1song.mp3';
+                downloadLink.download = 'StudioB29_ObaktoValobasha.mp3';
             }
         });
     </script>
 </body>
-    </html>
+</html>
