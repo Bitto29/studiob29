@@ -601,10 +601,10 @@
             
             <div class="flex space-x-4 mb-8">
                 <a href="https://youtube.com/@studiob29" target="_blank" class="action-btn">
-                    Subscribe On <i class="fab fa-youtube mr-2" id="yt"></i>
+                     <i class="fab fa-youtube mr-2" id="yt"></i> Subscribe
                 </a>
                 <a href="https://www.facebook.com/studiob29" target="_blank" class="action-btn">
-                    Like Us On <i class="fab fa-facebook-f mr-2" id="fb"></i>
+                     <i class="fab fa-facebook-f mr-2" id="fb"></i> Like Us
                 </a>
             </div>
         </div>
@@ -642,7 +642,7 @@
                                 <i class="fas fa-heart"></i>
                                 <span class="ml-1" id="like-count1">24</span>
                             </button>
-                            <a id="download-link" href="#" download="1song.mp3">
+                            <a id="download-link" href="#" download="obaktovalobasha.mp3">
                                 <button class="download-btn tooltip" id="download-btn1">
                                     <i class="fas fa-download"></i>
                                     <span class="tooltiptext">Download</span>
@@ -722,18 +722,18 @@
                     </a>
                 </div>
                 
-                <!-- Song 2 
+                <!-- Song 2 -->
                 <div class="player-container neon-border p-6 relative">
                     <div class="flex items-center mb-4">
                         <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
                             <img src="logo.jpeg" alt="Song cover" class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <h3 class="font-bold text-lg">Electric Dreams</h3>
+                            <h3 class="font-bold text-lg">Shesh Prohor</h3>
                             <p class="text-gray-400 text-sm">Studio B29</p>
                         </div>
                     </div>
-                    <audio id="song2" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+                    <audio id="song2" src="sheshprohor.mp3"></audio>
                     <div class="progress-container mb-2" id="progress-container2">
                         <div class="progress" id="progress2"></div>
                     </div>
@@ -744,10 +744,12 @@
                                 <i class="fas fa-heart"></i>
                                 <span class="ml-1" id="like-count2">18</span>
                             </button>
-                            <button class="download-btn tooltip" id="download-btn2">
-                                <i class="fas fa-download"></i>
-                                <span class="tooltiptext">Download</span>
-                            </button>
+                            <a id="download-link" href="#" download="sheshprohor.mp3">
+                                <button class="download-btn tooltip" id="download-btn1">
+                                    <i class="fas fa-download"></i>
+                                    <span class="tooltiptext">Download</span>
+                                </button>
+                            </a>
                         </div>
                         <span id="duration2">0:00</span>
                     </div>
@@ -771,7 +773,7 @@
                         </div>
                     </div>
                     
-                    <button class="lyrics-btn" id="lyrics-btn2">
+                    <!--<button class="lyrics-btn" id="lyrics-btn2">
                         <i class="fas fa-chevron-down"></i> Show Lyrics
                     </button>
                     <div class="lyrics-container" id="lyrics-container2">
@@ -794,12 +796,12 @@
                             Never fading, always waiting
                             In this electric dream
                         </div>
-                    </div>
+                    </div>-->
                     
                     <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2" target="_blank" class="youtube-btn">
                         <i class="fab fa-youtube"></i> Watch on YouTube
                     </a>
-                </div>-->
+                </div>
                 
                 <!-- Song 3
                 <div class="player-container neon-border p-6 relative">
@@ -1076,7 +1078,7 @@
                     likeCount: document.getElementById('like-count1'),
                     downloadBtn: document.getElementById('download-btn1'),
                     shareBtn: document.getElementById('share-btn1')
-                }/*,
+                },
                 { 
                     id: '2', 
                     audio: document.getElementById('song2'), 
@@ -1095,7 +1097,7 @@
                     likeCount: document.getElementById('like-count2'),
                     downloadBtn: document.getElementById('download-btn2'),
                     shareBtn: document.getElementById('share-btn2')
-                },
+                }/*,
                 { 
                     id: '3', 
                     audio: document.getElementById('song3'), 
