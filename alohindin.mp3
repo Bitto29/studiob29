@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio B29</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="logo.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #7b2cbf;
+            --secondary: #e0aaff;
+            --dark: #10002b;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            padding-top: 53px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .title-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .sound-wave {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            gap: 8px;
+            padding: 20px;
+        }
+        
+        .wave-bar {
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            width: 10px;
+            border-radius: 10px;
+            animation: wave 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% {
+                transform: scaleY(0.5);
+            }
+            50% {
+                transform: scaleY(1.5);
+            }
+        }
+        
+        .wave-bar:nth-child(1) { animation-delay: 0.1s; height: 20px; }
+        .wave-bar:nth-child(2) { animation-delay: 0.2s; height: 35px; }
+        .wave-bar:nth-child(3) { animation-delay: 0.3s; height: 50px; }
+        .wave-bar:nth-child(4) { animation-delay: 0.4s; height: 65px; }
+        .wave-bar:nth-child(5) { animation-delay: 0.5s; height: 80px; }
+        .wave-bar:nth-child(6) { animation-delay: 0.4s; height: 65px; }
+        .wave-bar:nth-child(7) { animation-delay: 0.3s; height: 50px; }
+        .wave-bar:nth-child(8) { animation-delay: 0.2s; height: 35px; }
+        .wave-bar:nth-child(9) { animation-delay: 0.1s; height: 20px; }
+        
+        .music-note {
+            position: absolute;
+            opacity: 0.3;
+            font-size: 1.5rem;
+            animation: float 10s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .player-container {
+            background: linear-gradient(145deg, #1a0933, #2d0b5a);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(123, 44, 191, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .player-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(123, 44, 191, 0.5);
+        }
+        
+        .progress-container {
+            background: #3a0a6e;
+            border-radius: 5px;
+            height: 5px;
+            cursor: pointer;
+        }
+        
+        .progress {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 5px;
+            height: 100%;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        
+        .play-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(224, 170, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(224, 170, 255, 0.8);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(224, 170, 255, 0.7);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            color: var(--secondary);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(123, 44, 191, 0.4);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(123, 44, 191, 0.6);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(224, 170, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(224, 170, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(224, 170, 255, 0);
+            }
+        }
+        
+        .neon-border {
+            position: relative;
+        }
+        
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff00cc);
+            background-size: 400%;
+            z-index: -1;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        
+        .neon-border:hover::before {
+            opacity: 1;
+            animation: animate 20s linear infinite;
+        }
+        
+        @keyframes animate {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 300% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+        
+        .channel-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            box-shadow: 0 0 20px rgba(224, 170, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .channel-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(224, 170, 255, 0.8);
+        }
+        
+        .action-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(123, 44, 191, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(123, 44, 191, 0.6);
+        }
+        
+        .volume-container {
+            position: relative;
+        }
+        
+        .volume-slider {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            width: 80px;
+            height: 0;
+            opacity: 0;
+            transition: all 0.3s ease;
+            background: rgba(26, 9, 51, 0.9);
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .volume-container:hover .volume-slider {
+            height: 100px;
+            opacity: 1;
+        }
+        
+        .volume-slider input {
+            width: 100%;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #3a0a6e;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .volume-slider input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--secondary);
+            cursor: pointer;
+        }
+        
+        .like-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .like-btn.liked {
+            color: #ff4081;
+            transform: scale(1.2);
+        }
+        
+        .download-btn {
+            background: transparent;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+        
+        .share-btn {
+            background: transparent;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(26, 9, 51, 0.9);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        #yt{
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(123, 44, 191, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #yt:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(123, 44, 191, 0.7);
+        }
+
+        #fb{
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(123, 44, 191, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #fb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(123, 44, 191, 0.7);
+        }
+        
+        .lyrics-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: rgba(26, 9, 51, 0.5);
+            border-radius: 0 0 10px 10px;
+            margin-top: -10px;
+        }
+        
+        .lyrics-content {
+            padding: 15px;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+        
+        .lyrics-btn {
+            background: transparent;
+            border: none;
+            color: var(--secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .lyrics-btn:hover {
+            color: white;
+        }
+        
+        .lyrics-btn i {
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .lyrics-btn.active i {
+            transform: rotate(180deg);
+        }
+        
+        .youtube-btn {
+            background: none;
+            border: 2px solid;
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        .youtube-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.6);
+        }
+        
+        .youtube-btn i {
+            margin-right: 7px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .channel-logo {
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+            
+            .sound-wave {
+                height: 70px;
+            }
+            
+            .wave-bar {
+                width: 6px;
+            }
+            
+            .player-container {
+                padding: 16px;
+            }
+            
+            #yt {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            #fb {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            #yt:hover {
+                right: 70px;
+            }
+            #fb:hover {
+                right: 70px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title-font {
+                font-size: 2.5rem !important;
+            }
+            
+            .channel-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .action-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a0933;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        
+        /* Player hover effect */
+        .player-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(224, 170, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .player-container:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Floating Music Notes -->
+    <div id="music-notes-container"></div>
+    
+    <!-- Header with Sound Wave -->
+    <header class="py-6 px-4 sm:px-6 lg:px-8 transition-all duration-300">
+        <div class="container mx-auto flex flex-col items-center">
+            <div class="flex items-center mb-6 flex-col md:flex-row header-content">
+                <img src="logo.jpeg" alt="Studio B29 Channel Logo" class="channel-logo mr-6">
+                <div>
+                    <h1 class="title-font text-4xl md:text-6xl font-bold mb-2 glow-text">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">STUDIO</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">B29</span>
+                    </h1>
+                    <p class="text-lg text-gray-300 max-w-2xl">Where your stories become music. Share your ideas, we'll create the soundtrack.</p>
+                </div>
+            </div>
+            
+            <div class="sound-wave mb-8">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+            </div>
+            
+            <div class="flex space-x-4 mb-8">
+                <a href="https://youtube.com/@studiob29" target="_blank" class="action-btn">
+                     <i class="fab fa-youtube mr-2" id="yt"></i> Subscribe
+                </a>
+                <a href="https://www.facebook.com/studiob29" target="_blank" class="action-btn">
+                     <i class="fab fa-facebook-f mr-2" id="fb"></i> Like Us
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Trending Songs Section -->
+        <section class="mb-20">
+            <h2 class="title-font text-3xl md:text-4xl font-bold mb-12 text-center glow-text">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">TRENDING</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">SONGS</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Song 1 -->
+                <div class="player-container neon-border p-6 relative">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="logo.jpeg" alt="Song cover" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Obakto Valobasha</h3>
+                            <p class="text-gray-400 text-sm">Studio B29</p>
+                        </div>
+                    </div>
+                    <audio id="song1" src="obaktovalobasha.mp3"></audio>
+                    <div class="progress-container mb-2" id="progress-container1">
+                        <div class="progress" id="progress1"></div>
+                    </div>
+                    <div class="flex justify-between items-center text-sm text-gray-400 mb-4">
+                        <span id="current-time1">0:00</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="like-btn" id="like-btn1">
+                                <i class="fas fa-heart"></i>
+                                <span class="ml-1" id="like-count1">24</span>
+                            </button>
+                            <a id="download-link" href="#" download="obaktovalobasha.mp3">
+                                <button class="download-btn tooltip" id="download-btn1">
+                                    <i class="fas fa-download"></i>
+                                    <span class="tooltiptext">Download</span>
+                                </button>
+                            </a>
+                        </div>
+                        <span id="duration1">0:00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <button class="text-gray-400 hover:text-white" id="backward-btn1">
+                            <i class="fas fa-backward"></i>
+                        </button>
+                        <button class="play-btn" id="play-btn1">
+                            <i class="fas fa-play text-white" id="icon1"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-white" id="forward-btn1">
+                            <i class="fas fa-forward"></i>
+                        </button>
+                        <div class="volume-container">
+                            <button class="text-gray-400 hover:text-white" id="volume-btn1">
+                                <i class="fas fa-volume-up" id="volume-icon1"></i>
+                            </button>
+                            <div class="volume-slider" id="volume-slider1">
+                                <input type="range" min="0" max="1" step="0.01" value="1" class="volume-range" id="volume-range1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lyrics section 
+                    <button class="lyrics-btn" id="lyrics-btn1">
+                        <i class="fas fa-chevron-down"></i> Show Lyrics
+                    </button>
+                    <div class="lyrics-container" id="lyrics-container1">
+                        <div class="lyrics-content" id="lyrics-content1">
+                           
+                            [Verse]
+                            চোখে লুকিয়ে কথা ছিল
+                            হৃদয়টা নীরবে কাঁদছিল
+                            তুমি দেখো নি আমায় একবার
+                            মনে হয়েছে সবই অজানা আহার
+                            
+                            [Verse 2]
+                            ছায়ার মতন তোমার পাশে হাঁটি
+                            তোমার ছোঁয়াতে স্বর্গের গল্প বাঁচি
+                            মনের আকাশে এঁকে দিয়েছি রঙ
+                            তবুও তুমি দূর লক্ষ্যের সংগ
+                            
+                            [Chorus]
+                            তোমার নাম রাখা আছে আমার নিশ্বাসে
+                            অব্যক্ত ভালোবাসার শব্দ এই নিশীথে
+                            স্বপ্ন মোটাতে তবু আছো তুমি দূরে
+                            আমার মনের রাত জাগার প্রহরে
+                            
+                            [Verse 3]
+                            তোমার হাসিতে সূর্য ওঠে মনের কোণে
+                            অন্ধকার নিভে যায় তোমার আলোর সনে
+                            তুমি দু'চোখে ঘুম এনে দাও
+                            তোমাকে ছাড়া জীবন অন্ধকারে চাও
+                            
+                            [Bridge]
+                            দূর থেকে তোমার ছবি দেখি নীরবে
+                            শব্দের চাদরে ঢেকে রাখি গোপনে
+                            তোমার জন্য এই গান শুধু তোমায় বলার
+                            অন্তহীন অভিমান এই মনের জ্বলার
+                            
+                            [Chorus]
+                            তোমার নাম রাখা আছে আমার নিশ্বাসে
+                            অব্যক্ত ভালোবাসার শব্দ এই নিশীথে
+                            স্বপ্ন মোটাতে তবু আছো তুমি দূরে
+                            আমার মনের রাত জাগার প্রহরে
+                        </div>
+                    </div>-->
+                    
+                    <!-- YouTube button -->
+                    <a
+                      href="https://youtu.be/Ytytd5jrJDA?si=s19SABN6qT2-X-Jw"
+                      target="_blank"
+                      class="group inline-flex w-full max-w-xs mx-auto justify-center items-center space-x-2 bg-transparent text-accent font-medium text-[15px] px-4 py-2 rounded-full transform translate-y-4 transition-transform duration-200 hover:translate-x-1 hover:translate-y-4 hover:underline hover:text-accent-light"
+                    >
+                      <i class="fab fa-youtube text-[15px] transition-transform group-hover:translate-x-1"></i>
+                      <span>Watch on YouTube</span>
+                      <i class="fas fa-arrow-right text-[15px] transition-transform group-hover:translate-x-1"></i>
+                    </a>
+
+                </div>
+                
+                <!-- Song 2 -->
+                <div class="player-container neon-border p-6 relative">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="logo.jpeg" alt="Song cover" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Shesh Prohor</h3>
+                            <p class="text-gray-400 text-sm">Studio B29</p>
+                        </div>
+                    </div>
+                    <audio id="song2" src="sheshprohor.mp3"></audio>
+                    <div class="progress-container mb-2" id="progress-container2">
+                        <div class="progress" id="progress2"></div>
+                    </div>
+                    <div class="flex justify-between items-center text-sm text-gray-400 mb-4">
+                        <span id="current-time2">0:00</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="like-btn" id="like-btn2">
+                                <i class="fas fa-heart"></i>
+                                <span class="ml-1" id="like-count2">18</span>
+                            </button>
+                            <a id="download-link" href="#" download="sheshprohor.mp3">
+                                <button class="download-btn tooltip" id="download-btn1">
+                                    <i class="fas fa-download"></i>
+                                    <span class="tooltiptext">Download</span>
+                                </button>
+                            </a>
+                        </div>
+                        <span id="duration2">0:00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <button class="text-gray-400 hover:text-white" id="backward-btn2">
+                            <i class="fas fa-backward"></i>
+                        </button>
+                        <button class="play-btn" id="play-btn2">
+                            <i class="fas fa-play text-white" id="icon2"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-white" id="forward-btn2">
+                            <i class="fas fa-forward"></i>
+                        </button>
+                        <div class="volume-container">
+                            <button class="text-gray-400 hover:text-white" id="volume-btn2">
+                                <i class="fas fa-volume-up" id="volume-icon2"></i>
+                            </button>
+                            <div class="volume-slider" id="volume-slider2">
+                                <input type="range" min="0" max="1" step="0.01" value="1" class="volume-range" id="volume-range2">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--<button class="lyrics-btn" id="lyrics-btn2">
+                        <i class="fas fa-chevron-down"></i> Show Lyrics
+                    </button>
+                    <div class="lyrics-container" id="lyrics-container2">
+                        <div class="lyrics-content" id="lyrics-content2">
+                            [Verse 1]
+                            Neon lights in the city night
+                            Digital love feels so right
+                            Circuits humming, hearts are drumming
+                            In this electric dream
+            
+                            [Chorus]
+                            Electric dreams, we're wired to feel
+                            Binary code but love is real
+                            In the glow of the screen light
+                            You're my perfect digital night
+            
+                            [Verse 2]
+                            Touchscreen kisses, pixel blisses
+                            Memory stored in our devices
+                            Never fading, always waiting
+                            In this electric dream
+                        </div>
+                    </div>-->
+                    
+                        <a
+                          href="https://youtu.be/jeSryaok3KU?si=Dh0HLAbv7AMxsVzG"
+                          target="_blank"
+                          class="group inline-flex w-full max-w-xs mx-auto justify-center items-center space-x-2 bg-transparent text-accent font-medium text-[15px] px-4 py-2 rounded-full transform translate-y-4 transition-transform duration-200 hover:translate-x-1 hover:translate-y-4 hover:underline hover:text-accent-light"
+                        >
+                          <i class="fab fa-youtube text-[15px] transition-transform group-hover:translate-x-1"></i>
+                          <span>Watch on YouTube</span>
+                          <i class="fas fa-arrow-right text-[15px] transition-transform group-hover:translate-x-1"></i>
+                        </a>
+
+                </div>
+                
+                <!-- Song 3 -->
+                <div class="player-container neon-border p-6 relative">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="logo.jpeg" alt="Song cover" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Alohin Din</h3>
+                            <p class="text-gray-400 text-sm">Studio B29</p>
+                        </div>
+                    </div>
+                    <audio id="song3" src="alohindin.mp3"></audio>
+                    <div class="progress-container mb-2" id="progress-container3">
+                        <div class="progress" id="progress3"></div>
+                    </div>
+                    <div class="flex justify-between items-center text-sm text-gray-400 mb-4">
+                        <span id="current-time3">0:00</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="like-btn" id="like-btn3">
+                                <i class="fas fa-heart"></i>
+                                <span class="ml-1" id="like-count3">32</span>
+                            </button>
+                            <a id="download-link" href="#" download="alohindin.mp3">
+                                <button class="download-btn tooltip" id="download-btn1">
+                                    <i class="fas fa-download"></i>
+                                    <span class="tooltiptext">Download</span>
+                                </button>
+                            </a>
+                        </div>
+                        <span id="duration3">0:00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <button class="text-gray-400 hover:text-white" id="backward-btn3">
+                            <i class="fas fa-backward"></i>
+                        </button>
+                        <button class="play-btn" id="play-btn3">
+                            <i class="fas fa-play text-white" id="icon3"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-white" id="forward-btn3">
+                            <i class="fas fa-forward"></i>
+                        </button>
+                        <div class="volume-container">
+                            <button class="text-gray-400 hover:text-white" id="volume-btn3">
+                                <i class="fas fa-volume-up" id="volume-icon3"></i>
+                            </button>
+                            <div class="volume-slider" id="volume-slider3">
+                                <input type="range" min="0" max="1" step="0.01" value="1" class="volume-range" id="volume-range3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--<button class="lyrics-btn" id="lyrics-btn3">
+                        <i class="fas fa-chevron-down"></i> Show Lyrics
+                    </button>
+                    <div class="lyrics-container" id="lyrics-container3">
+                        <div class="lyrics-content" id="lyrics-content3">
+                            [Verse 1]
+                            Whispered words in empty halls
+                            Footsteps fade against the walls
+                            All the promises we made
+                            Now just shadows in the shade
+            
+                            [Chorus]
+                            I'm lost in the echo
+                            Of the love we used to know
+                            Every word comes back to me
+                            In this lonely symphony
+            
+                            [Verse 2]
+                            Pictures framed in broken glass
+                            Memories that never last
+                            All the songs we used to sing
+                            Now just echoes lingering
+                        </div>
+                    </div>-->
+                    
+                    <a
+                          href="https://youtu.be/JqBmtEQwPMg"
+                          target="_blank"
+                          class="group inline-flex w-full max-w-xs mx-auto justify-center items-center space-x-2 bg-transparent text-accent font-medium text-[15px] px-4 py-2 rounded-full transform translate-y-4 transition-transform duration-200 hover:translate-x-1 hover:translate-y-4 hover:underline hover:text-accent-light"
+                        >
+                          <i class="fab fa-youtube text-[15px] transition-transform group-hover:translate-x-1"></i>
+                          <span>Watch on YouTube</span>
+                          <i class="fas fa-arrow-right text-[15px] transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+                 <!--<div class="player-container neon-border p-6">
+                            <h3 class="font-bold text-lg">Coming Soon</h3>
+                            <p class="text-gray-400 text-sm">New songs are just about to come. Stay tuned</p>
+                        </div>-->
+                </div>
+            
+            <!-- See More Videos button -->
+            <div class="text-center mt-12">
+                <a href="https://youtube.com/@studiob29" target="_blank" class="youtube-btn inline-block px-8 py-3 text-lg">
+                    <i class="fab fa-youtube"></i> See More Videos on YouTube
+                </a>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="mb-20">
+            <div class="bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-2xl p-8 md:p-12 backdrop-blur-sm border border-purple-500/20">
+                <h2 class="title-font text-3xl md:text-4xl font-bold mb-6 text-center glow-text">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">YOUR STORY,</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">OUR MUSIC</span>
+                </h2>
+                <p class="text-lg text-gray-300 mb-8 text-center max-w-3xl mx-auto">
+                    At Studio B29, we believe every story deserves its own soundtrack. Share your ideas with us, and we'll transform them into beautiful music that resonates with your emotions.
+                </p>
+                <div class="flex justify-center">
+                    <a href="https://forms.gle/4kZB9JYGbYm7KLqc7" target="_blank" class="submit-btn pulse">
+                        Share Your Story Idea <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section>
+            <h2 class="title-font text-3xl md:text-4xl font-bold mb-12 text-center glow-text">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">CONNECT</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">WITH US</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-2xl p-8 backdrop-blur-sm border border-purple-500/20">
+                    <h3 class="text-2xl font-bold mb-4">Get In Touch</h3>
+                    <p class="text-gray-300 mb-6">
+                        Have questions or want to collaborate? Reach out to us through our email. Just click on the email address below.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-purple-300"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Email</p>
+                                <a href="mailto:info.bitto29@gmail.com" class="text-purple-300 hover:text-white">info.bitto29@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-2xl p-8 backdrop-blur-sm border border-blue-500/20">
+                    <h3 class="text-2xl font-bold mb-4">About Studio B29</h3>
+                    <p class="text-gray-300 mb-6">
+                        We're dedicated to creating unique musical experiences based on real stories from people like you.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-music text-blue-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Our Process</h4>
+                                <p class="text-gray-400 text-sm">
+                                    We collect story ideas, select the most inspiring ones, and create custom music that captures the essence of each narrative.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-users text-blue-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Community Driven</h4>
+                                <p class="text-gray-400 text-sm">
+                                    Every song we create is voted by you general people and the most voted ones are highlighted.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-trophy text-blue-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Award Winning</h4>
+                                <p class="text-gray-400 text-sm">
+                                    Recognized for our innovative approach to music creation and storytelling.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-black/20 py-8 mt-20 border-t border-purple-900/30">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 flex items-center">
+                    <img src="logo.jpeg" alt="Studio B29 Logo" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h2 class="title-font text-2xl font-bold">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">STUDIO</span>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">B29</span>
+                        </h2>
+                        <p class="text-gray-400 text-sm">Where stories become music</p>
+                    </div>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://youtube.com/@studiob29" target="_blank" class="text-gray-400 hover:text-purple-300 transition-colors">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com/studiob29" target="_blank" class="text-gray-400 hover:text-purple-300 transition-colors">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/studio.b29" class="text-gray-400 hover:text-purple-300 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="mailto:info.bitto29@gmail.com" class="text-gray-400 hover:text-purple-300 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Studio B29. All rights reserved. | Founder, <a href="https://bitto29.github.io" class="hover:text-purple-300">Basit Iqbal Bitto.</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Create floating music notes
+        function createMusicNotes() {
+            const container = document.getElementById('music-notes-container');
+            const notes = ['♪', '♫', '♩', '♬', '♭', '♮', '♯'];
+            
+            for (let i = 0; i < 20; i++) {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + 'vw';
+                note.style.top = Math.random() * 100 + 'vh';
+                note.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                note.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(note);
+            }
+        }
+        
+        // Toggle lyrics visibility
+        function setupLyricsToggles() {
+            const lyricsButtons = document.querySelectorAll('.lyrics-btn');
+            
+            lyricsButtons.forEach(button => {
+                const containerId = button.id.replace('btn', 'container');
+                const container = document.getElementById(containerId);
+                
+                button.addEventListener('click', () => {
+                    button.classList.toggle('active');
+                    
+                    if (container.style.maxHeight) {
+                        container.style.maxHeight = null;
+                        button.innerHTML = '<i class="fas fa-chevron-down"></i> Show Lyrics';
+                    } else {
+                        container.style.maxHeight = container.scrollHeight + 'px';
+                        button.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Lyrics';
+                    }
+                });
+            });
+        }
+        
+        // Initialize music players
+        function initMusicPlayers() {
+            const players = [
+                { 
+                    id: '1', 
+                    audio: document.getElementById('song1'), 
+                    playBtn: document.getElementById('play-btn1'), 
+                    icon: document.getElementById('icon1'), 
+                    progress: document.getElementById('progress1'), 
+                    currentTime: document.getElementById('current-time1'), 
+                    duration: document.getElementById('duration1'),
+                    backwardBtn: document.getElementById('backward-btn1'),
+                    forwardBtn: document.getElementById('forward-btn1'),
+                    volumeBtn: document.getElementById('volume-btn1'),
+                    volumeIcon: document.getElementById('volume-icon1'),
+                    volumeSlider: document.getElementById('volume-slider1'),
+                    volumeRange: document.getElementById('volume-range1'),
+                    likeBtn: document.getElementById('like-btn1'),
+                    likeCount: document.getElementById('like-count1'),
+                    downloadBtn: document.getElementById('download-btn1'),
+                    shareBtn: document.getElementById('share-btn1')
+                },
+                { 
+                    id: '2', 
+                    audio: document.getElementById('song2'), 
+                    playBtn: document.getElementById('play-btn2'), 
+                    icon: document.getElementById('icon2'), 
+                    progress: document.getElementById('progress2'), 
+                    currentTime: document.getElementById('current-time2'), 
+                    duration: document.getElementById('duration2'),
+                    backwardBtn: document.getElementById('backward-btn2'),
+                    forwardBtn: document.getElementById('forward-btn2'),
+                    volumeBtn: document.getElementById('volume-btn2'),
+                    volumeIcon: document.getElementById('volume-icon2'),
+                    volumeSlider: document.getElementById('volume-slider2'),
+                    volumeRange: document.getElementById('volume-range2'),
+                    likeBtn: document.getElementById('like-btn2'),
+                    likeCount: document.getElementById('like-count2'),
+                    downloadBtn: document.getElementById('download-btn2'),
+                    shareBtn: document.getElementById('share-btn2')
+                },
+                { 
+                    id: '3', 
+                    audio: document.getElementById('song3'), 
+                    playBtn: document.getElementById('play-btn3'), 
+                    icon: document.getElementById('icon3'), 
+                    progress: document.getElementById('progress3'), 
+                    currentTime: document.getElementById('current-time3'), 
+                    duration: document.getElementById('duration3'),
+                    backwardBtn: document.getElementById('backward-btn3'),
+                    forwardBtn: document.getElementById('forward-btn3'),
+                    volumeBtn: document.getElementById('volume-btn3'),
+                    volumeIcon: document.getElementById('volume-icon3'),
+                    volumeSlider: document.getElementById('volume-slider3'),
+                    volumeRange: document.getElementById('volume-range3'),
+                    likeBtn: document.getElementById('like-btn3'),
+                    likeCount: document.getElementById('like-count3'),
+                    downloadBtn: document.getElementById('download-btn3'),
+                    shareBtn: document.getElementById('share-btn3')
+                }
+            ];
+            
+            players.forEach(player => {
+                let isPlaying = false;
+                let isLiked = false;
+                
+                // Play/Pause button
+                player.playBtn.addEventListener('click', () => {
+                    if (isPlaying) {
+                        player.audio.pause();
+                        player.icon.classList.remove('fa-pause');
+                        player.icon.classList.add('fa-play');
+                    } else {
+                        // Pause all other players
+                        players.forEach(p => {
+                            if (p.id !== player.id && !p.audio.paused) {
+                                p.audio.pause();
+                                p.icon.classList.remove('fa-pause');
+                                p.icon.classList.add('fa-play');
+                                isPlaying = false;
+                            }
+                        });
+                        
+                        player.audio.play();
+                        player.icon.classList.remove('fa-play');
+                        player.icon.classList.add('fa-pause');
+                    }
+                    isPlaying = !isPlaying;
+                });
+                
+                // Update progress bar
+                player.audio.addEventListener('timeupdate', () => {
+                    const { currentTime, duration } = player.audio;
+                    const progressPercent = (currentTime / duration) * 100;
+                    player.progress.style.width = `${progressPercent}%`;
+                    
+                    // Update time display
+                    const durationMinutes = Math.floor(duration / 60);
+                    let durationSeconds = Math.floor(duration % 60);
+                    if (durationSeconds < 10) durationSeconds = `0${durationSeconds}`;
+                    
+                    if (durationSeconds) {
+                        player.duration.textContent = `${durationMinutes}:${durationSeconds}`;
+                    }
+                    
+                    const currentMinutes = Math.floor(currentTime / 60);
+                    let currentSeconds = Math.floor(currentTime % 60);
+                    if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
+                    player.currentTime.textContent = `${currentMinutes}:${currentSeconds}`;
+                });
+                
+                // Click on progress bar to seek
+                document.getElementById(`progress-container${player.id}`).addEventListener('click', (e) => {
+                    const width = document.getElementById(`progress-container${player.id}`).clientWidth;
+                    const clickX = e.offsetX;
+                    const duration = player.audio.duration;
+                    player.audio.currentTime = (clickX / width) * duration;
+                });
+                
+                // Song ended
+                player.audio.addEventListener('ended', () => {
+                    player.icon.classList.remove('fa-pause');
+                    player.icon.classList.add('fa-play');
+                    player.progress.style.width = '0%';
+                    player.currentTime.textContent = '0:00';
+                    isPlaying = false;
+                });
+                
+                // Load metadata
+                player.audio.addEventListener('loadedmetadata', () => {
+                    const duration = player.audio.duration;
+                    const durationMinutes = Math.floor(duration / 60);
+                    let durationSeconds = Math.floor(duration % 60);
+                    if (durationSeconds < 10) durationSeconds = `0${durationSeconds}`;
+                    player.duration.textContent = `${durationMinutes}:${durationSeconds}`;
+                });
+                
+                // Backward button (skip 5 seconds back)
+                player.backwardBtn.addEventListener('click', () => {
+                    player.audio.currentTime = Math.max(0, player.audio.currentTime - 5);
+                });
+                
+                // Forward button (skip 5 seconds forward)
+                player.forwardBtn.addEventListener('click', () => {
+                    player.audio.currentTime = Math.min(player.audio.duration, player.audio.currentTime + 5);
+                });
+                
+                // Volume control
+                player.volumeRange.addEventListener('input', () => {
+                    player.audio.volume = player.volumeRange.value;
+                    
+                    // Update volume icon based on volume level
+                    if (player.audio.volume === 0) {
+                        player.volumeIcon.classList.remove('fa-volume-up', 'fa-volume-down');
+                        player.volumeIcon.classList.add('fa-volume-mute');
+                    } else if (player.audio.volume < 0.5) {
+                        player.volumeIcon.classList.remove('fa-volume-up', 'fa-volume-mute');
+                        player.volumeIcon.classList.add('fa-volume-down');
+                    } else {
+                        player.volumeIcon.classList.remove('fa-volume-down', 'fa-volume-mute');
+                        player.volumeIcon.classList.add('fa-volume-up');
+                    }
+                });
+                
+                // Mute toggle when clicking volume button
+                player.volumeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (player.audio.volume > 0) {
+                        player.audio.volume = 0;
+                        player.volumeRange.value = 0;
+                        player.volumeIcon.classList.remove('fa-volume-up', 'fa-volume-down');
+                        player.volumeIcon.classList.add('fa-volume-mute');
+                    } else {
+                        player.audio.volume = 1;
+                        player.volumeRange.value = 1;
+                        player.volumeIcon.classList.remove('fa-volume-down', 'fa-volume-mute');
+                        player.volumeIcon.classList.add('fa-volume-up');
+                    }
+                });
+                
+                // Like button
+                player.likeBtn.addEventListener('click', () => {
+                    isLiked = !isLiked;
+                    if (isLiked) {
+                        player.likeBtn.classList.add('liked');
+                        player.likeCount.textContent = parseInt(player.likeCount.textContent) + 1;
+                    } else {
+                        player.likeBtn.classList.remove('liked');
+                        player.likeCount.textContent = parseInt(player.likeCount.textContent) - 1;
+                    }
+                });
+                
+                // Download button
+                player.downloadBtn.addEventListener('click', () => {
+                    // In a real implementation, this would trigger a download
+                    alert(`Downloading song ${player.id}`);
+                });
+                
+                // Share button
+                if (player.shareBtn) {
+                    player.shareBtn.addEventListener('click', () => {
+                        // In a real implementation, this would open a share dialog
+                        alert(`Sharing song ${player.id}`);
+                    });
+                }
+            });
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createMusicNotes();
+            initMusicPlayers();
+            setupLyricsToggles();
+            
+            // Add animation to header on scroll
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                const scrollPosition = window.scrollY;
+                
+                if (scrollPosition > 50) {
+                    header.style.transform = `translateY(-${Math.min(scrollPosition * 0.2, 50)}px)`;
+                    header.style.opacity = 1 - Math.min(scrollPosition / 200, 0.5);
+                } else {
+                    header.style.transform = 'translateY(0)';
+                    header.style.opacity = 1;
+                }
+            });
+            
+            // Set up download links
+            const downloadLink = document.getElementById('download-link');
+            if (downloadLink) {
+                downloadLink.href = '1song.mp3';
+                downloadLink.download = 'StudioB29_ObaktoValobasha.mp3';
+            }
+        });
+    </script>
+    <script>(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="zygDnCZVPgCtLKcVaViQG";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();</script>
+</body>
+</html>
